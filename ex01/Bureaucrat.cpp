@@ -12,9 +12,9 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 {
 	this->grade = grade;
 	if (grade < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
@@ -24,6 +24,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 		this->grade = obj.getGrade();
 	return (*this);
 }
+
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name(obj.getName())
 {
@@ -45,16 +46,23 @@ void Bureaucrat::increase_gade()
 {
 	this->grade--;
 	if (grade < 1)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 }
 
 void Bureaucrat::decrease_grade()
 {
 	this->grade++;
 	if (grade > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
+void Bureaucrat::signForm(Form &form)
+{
+	if(form.get_is_signed())
+		std::cout << this->getName() << " signed " << form.get_name() << std::endl;
+	else
+		std::cout << this->getName() << " couldn’t sign " << form.get_name() <<  " because of his don't have permission." << std::endl;
+}
 
 
 Bureaucrat::~Bureaucrat()
