@@ -12,8 +12,10 @@ private:
 public:
 	Bureaucrat();
 	Bureaucrat(std::string name, int grade);
-	std::string getName();
-	int getGrade();
+	Bureaucrat& operator=(const Bureaucrat& obj);
+	Bureaucrat(const Bureaucrat &obj);
+	std::string getName() const;
+	int getGrade() const;
 	void increase_gade();
 	void decrease_grade();
 	~Bureaucrat();
@@ -31,6 +33,9 @@ public:
 				return "Grade too low!";
 		}
 	};
+
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);
 
 #endif

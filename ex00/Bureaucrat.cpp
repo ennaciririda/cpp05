@@ -1,8 +1,11 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() :name("anonymous") , grade(120)
 {
-
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
@@ -14,12 +17,26 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 		throw GradeTooLowException();
 }
 
-std::string Bureaucrat::getName()
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
+{
+	std::cout << "copy assign\n";
+	if (this != &obj)
+		this->grade = obj.getGrade();
+	return (*this);
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name(obj.getName())
+{
+	std::cout << "copy const\n";
+	*this = obj;
+}
+
+std::string Bureaucrat::getName() const
 {
 	return this->name;
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
 	return this->grade;
 }
@@ -40,4 +57,10 @@ void Bureaucrat::decrease_grade()
 
 Bureaucrat::~Bureaucrat()
 {
+}
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
+{
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
+	return os;
 }
