@@ -8,8 +8,8 @@ class Bureaucrat;
 
 class AForm
 {
-	protected :
-		const	std::string	name;
+	private :
+		const			std::string	name;
 		bool				is_signed;
 		const			int	grade_req_to_sign;
 		const			int	grade_req_to_execute;
