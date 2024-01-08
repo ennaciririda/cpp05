@@ -24,19 +24,19 @@ class AForm
 		bool get_is_signed();
 		void beSigned(Bureaucrat &bur);
 		virtual void execute(Bureaucrat const & executor) = 0;
-		~AForm();
+		virtual ~AForm();
 
 	class GradeTooHighException : public std::exception
 	{
 		public :
-			const char* what() const _NOEXCEPT {
+			const char* what() const throw() {
 			return "Grade too high!";
 		}
 	};
 	class GradeTooLowException : public std::exception
 	{
 		public :
-			const char* what() const _NOEXCEPT {
+			const char* what() const throw() {
 				return "Grade too low!";
 		}
 	};

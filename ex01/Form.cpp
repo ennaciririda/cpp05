@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form() : name("Anonym_Form"), grade_req_to_execute(120), grade_req_to_sign(100)
+Form::Form() : name("Anonym_Form"), grade_req_to_sign(100), grade_req_to_execute(120)
 {
 	this->is_signed = false;
 	if (this->grade_req_to_sign > 150 || this->grade_req_to_execute > 150)
@@ -18,7 +18,7 @@ Form::Form(std::string name, int grade_sign, int grade_exec) : name(name), grade
 		throw Form::GradeTooHighException();
 }
 
-Form::Form(const Form &obj) : name(obj.get_name()), grade_req_to_execute(obj.get_exec_grade()), grade_req_to_sign(obj.get_sign_grade())
+Form::Form(const Form &obj) : name(obj.get_name()), grade_req_to_sign(obj.get_sign_grade()), grade_req_to_execute(obj.get_exec_grade())
 {
 	*this = obj;
 }

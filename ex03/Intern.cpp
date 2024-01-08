@@ -7,30 +7,36 @@ Intern::Intern()
 
 AForm *Intern::makeForm(std::string form_name, std::string target)
 {
-	AForm* (Intern::* tab[]) (std::string) = {&Intern::shrubbery_func, &Intern::robotomy_func, &Intern::Presidential_func};
-	for (int i = 0; i < 3; i++)
+	int i = 0;
+	int flag = 0;
+	std::string strings[] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
+	AForm *tab[] = {new ShrubberyCreationForm(target), new RobotomyRequestForm(target), new PresidentialPardonForm(target)};
+	for (; i < 3; i++)
 	{
-		if(tab[i].)
+		if (strings[i] == form_name)
+		{
+			flag = 1;
+			break;
+		}
 	}
-}
-
-AForm *Intern::shrubbery_func(std::string target)
-{
-	return new ShrubberyCreationForm(target);
-}
-
-AForm *Intern::robotomy_func(std::string target)
-{
-	return new RobotomyRequestForm(target);
-}
-
-AForm *Intern::Presidential_func(std::string target)
-{
-	return new PresidentialPardonForm(target);
+	if (flag == 1)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			if (i != j)
+				delete tab[j];
+		}
+		std::cout << "Intern creates " << tab[i]->get_name() << std::endl;
+		return tab[i];
+	}
+	std::cerr << "There is no form with the name given" << std::endl;
+	return NULL;
 }
 
 Intern &Intern::operator=(const Intern &obj)
 {
+	(void)obj;
+	return (*this);
 }
 
 Intern::Intern(const Intern &obj)

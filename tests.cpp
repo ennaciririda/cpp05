@@ -1,47 +1,40 @@
 
 #include <iostream>
 
-class rida
+class rida :public std::exception
 {
-	private:
-		int grade;
-	public :
-		rida();
-		virtual void prt(int grade);
-		rida& operator=(const rida &obj);
-		int get_grade() const;
-
+	const char* what() const throw()
+	{
+		return ("pppppppp");
+	}
 };
 
-void rida::prt(int r)
-{
-	this->grade = r;
-}
-rida::rida()
-{
-	this->grade = 100;
-}
-rida& rida::operator=(const rida &obj)
-{
-	if (this != &obj)
-	{
-		std::cout << "here\n";
-		this->grade = obj.grade;
-	}
-	return (*this);
+void stackk() {
+	throw 3;
 }
 
-int rida::get_grade() const
-{
-	return this->grade;
+void stackun() {
+	stackk();
+	std::cout << "hhhh\n";
 }
 
 int main()
 {
-	rida a;
-	rida b;
-	b = a;
-	std::cout << a.get_grade() << std::endl;
-	// std::cout << b.get_grade() << std::endl;
+	// rida a;
+	// rida b;
+	// b = a;
+	try
+	{
+		rida *a = new rida();
+		throw a;
+	} 
+	catch(const std::exception *e)
+	{
+		std::cerr << e->what() << '\n';
+	}
+	catch(...)
+	{
+		std::cerr << "hmed" << '\n';
 
+	}
 }

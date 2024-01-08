@@ -19,7 +19,7 @@ class PresidentialPardonForm : public AForm
 	class ExecuteException : public std::exception
 	{
 		public :
-			const char* what() const _NOEXCEPT {
+			const char* what() const throw() {
 			return "unable to execute the form";
 		}
 	};

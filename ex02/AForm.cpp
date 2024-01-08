@@ -1,6 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm() : name("Anonym_AForm"), grade_req_to_execute(120), grade_req_to_sign(100)
+AForm::AForm() : name("Anonym_AForm"), grade_req_to_sign(100), grade_req_to_execute(120)
 {
 	this->is_signed = false;
 	if (this->grade_req_to_sign > 150 || this->grade_req_to_execute > 150)
@@ -18,7 +18,7 @@ AForm::AForm(std::string name, int grade_sign, int grade_exec) : name(name), gra
 		throw AForm::GradeTooHighException();
 }
 
-AForm::AForm(const AForm &obj) : name(obj.get_name()), grade_req_to_execute(obj.get_exec_grade()), grade_req_to_sign(obj.get_sign_grade())
+AForm::AForm(const AForm &obj) : name(obj.get_name()), grade_req_to_sign(obj.get_sign_grade()), grade_req_to_execute(obj.get_exec_grade())
 {
 	*this = obj;
 }

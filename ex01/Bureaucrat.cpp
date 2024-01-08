@@ -19,7 +19,6 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 {
-	std::cout << "copy assign\n";
 	if (this != &obj)
 		this->grade = obj.getGrade();
 	return (*this);
@@ -28,7 +27,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name(obj.getName())
 {
-	std::cout << "copy const\n";
 	*this = obj;
 }
 

@@ -19,7 +19,6 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 {
-	std::cout << "copy assign\n";
 	if (this != &obj)
 		this->grade = obj.getGrade();
 	return (*this);
@@ -27,7 +26,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj) : name(obj.getName())
 {
-	std::cout << "copy const\n";
 	*this = obj;
 }
 
@@ -55,14 +53,12 @@ void Bureaucrat::decrease_grade()
 		throw GradeTooLowException();
 }
 
-
-
-Bureaucrat::~Bureaucrat()
-{
-}
-
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
 {
 	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return os;
+}
+
+Bureaucrat::~Bureaucrat()
+{
 }
